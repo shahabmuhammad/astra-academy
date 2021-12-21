@@ -1,0 +1,33 @@
+<div class="row div-center">
+    <div class="mt-3 col-6">
+        <h1 class="text-center">Log In</h1>
+        <form class="row g-3 mt-1" [formGroup]="loginForm" (ngSubmit)="login()">
+            <div *ngIf="loginForm?.errors?.invalidLogin" class="text-danger">
+                Invalid email or password
+            </div>
+             <div class="col-md-12">
+                <div class="form-floating">
+                    <input type="email" formControlName="email" class="form-control" id="email" placeholder="name@example.com">
+                    <label for="email">Email address</label>
+                </div>
+                <div *ngIf="email?.touched && email?.invalid" class="text-danger mt-1">
+                    <div *ngIf="email?.errors?.required">Email is required.</div>
+                </div>
+             </div>
+             <div class="col-md-12">
+                <div class="form-floating">
+                    <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+                    <label for="password">Password</label>
+                </div>
+                <div *ngIf="password?.touched && password?.invalid" class="text-danger mt-1">
+                    <div *ngIf="password?.errors?.required">Password is required.</div>
+                </div>
+             </div>
+             <div class="col-md-12">
+                <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!loginForm?.valid">Log In</button>
+             </div>
+        </form>
+        <p class="mt-1">Not a member? <a routerLink="/register">Sign up now</a></p>
+    
+    </div>
+</div>

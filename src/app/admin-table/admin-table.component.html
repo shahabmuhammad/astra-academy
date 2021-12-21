@@ -1,0 +1,29 @@
+<div class="row mt-3">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of (users$ |async)">
+                    <td scope="row">{{user.firstName}} {{user.secondName}}</td>
+                    <td scope="row">{{user.email}}</td>
+                    <td scope="row">{{user.phoneNumber}}</td>
+                    <td scope="row">
+                        <!-- Edit button for teacher -->
+                        <button *ngIf="usersType=='teacher'" type="button" class="btn btn-primary"
+                            routerLink="/admin/add-teacher/{{user.id}}">Edit</button>   
+                        <!-- Edit button for students                      -->
+                        <button *ngIf="usersType=='student'" type="button" class="btn btn-primary"
+                            routerLink="/admin/add-student/{{user.id}}">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

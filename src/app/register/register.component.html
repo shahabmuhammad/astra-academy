@@ -1,0 +1,77 @@
+<div class="row div-center">
+    <div class="mt-3 col-8">
+        <h1 class="text-center">Sign up</h1>
+        <form class="row g-3 mt-1" [formGroup]="registerForm" (ngSubmit)="register()" >
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="First Name">
+                    <label for="firstName">First Name</label>
+                </div>
+                <div  *ngIf="firstName?.touched && firstName?.invalid" class="text-danger mt-1">
+                    <div *ngIf="firstName?.errors?.required">First Name is required.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" formControlName="secondName" class="form-control" id="secondName" placeholder="Second Name">
+                    <label for="secondName">Second Name</label>
+                </div>
+                <div  *ngIf="secondName?.touched && secondName?.invalid" class="text-danger mt-1">
+                    <div *ngIf="secondName?.errors?.required">Second Name is required.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="tel" formControlName="phoneNumber" class="form-control" id="phonNumber" placeholder="Phone Number">
+                    <label for="phonNumber">Phone Number</label>
+                </div>
+                <div  *ngIf="phoneNumber?.touched && phoneNumber?.invalid" class="text-danger mt-1">
+                    <div *ngIf="phoneNumber?.errors?.required">Phone Number is required.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="email" formControlName="email" class="form-control" id="email" placeholder="name@example.com">
+                    <label for="email">Email address</label>
+                </div>
+                <div  *ngIf="email?.touched && email?.invalid" class="text-danger mt-1">
+                    <div *ngIf="email?.errors?.required">Email is required.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+                    <label for="password">Password</label>
+                </div>
+                <div  *ngIf="password?.touched && password?.invalid" class="text-danger mt-1">
+                    <div *ngIf="password?.errors?.required">Password is required.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                    <label for="confirmPassword">Confirm Password</label>
+                </div>
+                <div  *ngIf="confirmPassword?.touched && confirmPassword?.invalid" class="text-danger mt-1">
+                    <div *ngIf="confirmPassword?.errors?.required">Confirm Password is required.</div>
+                </div>
+                <div class="text-danger mt-1">
+                    <div *ngIf="confirmPassword?.valid && registerForm?.errors?.passwordShouldMatch">Passwords do not match.</div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-floating">
+                    <input type="text" formControlName="address" class="form-control" id="address" placeholder="Address">
+                    <label for="address">Address</label>
+                </div>
+                <div  *ngIf="address?.touched && address?.invalid" class="text-danger mt-1">
+                    <div *ngIf="address?.errors?.required">Address is required.</div>
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn col-12 btn-primary" [disabled]="!registerForm?.valid">Sign up</button>
+            </div>
+        </form>
+        <p class="mt-1">Already Registered? <a routerLink="/login">Log In</a></p>
+    </div>
+</div>

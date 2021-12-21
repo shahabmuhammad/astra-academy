@@ -1,0 +1,91 @@
+<div class="row div-center">
+    <div class="mt-3 col-8">
+        <h3 class="text-center">Add Student</h3>
+        <form class="row g-3 mt-1" [formGroup]="addStudentForm" (ngSubmit)="register()">
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" formControlName="firstName" class="form-control" id="firstName"
+                        placeholder="First Name">
+                    <label for="firstName">First Name</label>
+                </div>
+                <div *ngIf="firstName?.touched && firstName?.invalid" class="text-danger mt-1">
+                    <div *ngIf="firstName?.errors?.required">First Name is required.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" formControlName="secondName" class="form-control" id="secondName"
+                        placeholder="Second Name">
+                    <label for="secondName">Second Name</label>
+                </div>
+                <div *ngIf="secondName?.touched && secondName?.invalid" class="text-danger mt-1">
+                    <div *ngIf="secondName?.errors?.required">Second Name is required.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="tel" formControlName="phoneNumber" class="form-control" id="phonNumber"
+                        placeholder="Phone Number">
+                    <label for="phonNumber">Phone Number</label>
+                </div>
+                <div *ngIf="phoneNumber?.touched && phoneNumber?.invalid" class="text-danger mt-1">
+                    <div *ngIf="phoneNumber?.errors?.required">Phone Number is required.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <select name="assignTecher" formControlName="assignTeacher" id="assignTecher" class="form-control">
+                        <option value="">Select Teacher</option>
+                        <option *ngFor="let teacher of (teachers$ |async)" [value]="teacher.id ">{{ teacher.firstName +' '+ teacher.secondName }}</option>
+                    </select>
+                    <label for="assignTecher">Add Teacher</label>
+                </div>
+                <div *ngIf="assignTeacher?.touched && assignTeacher?.invalid" class="text-danger mt-1">
+                    <div *ngIf="assignTeacher?.errors?.required">Add Teacher is required.</div>
+                </div> 
+            </div>
+           <div class="col-12">
+                <div class="form-floating">
+                    <input type="text" formControlName="address" class="form-control" id="address" placeholder="Address">
+                    <label for="address">Address</label>
+                </div>
+                <div *ngIf="address?.touched && address?.invalid" class="text-danger mt-1">
+                    <div *ngIf="address?.errors?.required">Address is required.</div>
+                </div>
+            </div>
+           <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="password" formControlName="password" class="form-control" id="password"
+                        placeholder="Password">
+                    <label for="password">Password</label>
+                </div>
+                <div *ngIf="password?.touched && password?.invalid" class="text-danger mt-1">
+                    <div *ngIf="password?.errors?.required">Password is required.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="email" formControlName="email" class="form-control" id="email" placeholder="name@example.com">
+                    <label for="email">Email address</label>
+                </div>
+                <div *ngIf="email?.touched && email?.invalid" class="text-danger mt-1">
+                    <div *ngIf="email?.errors?.required">Email is required.</div>
+                </div>
+            </div> 
+            <ng-template #notId>
+                <div class="col-12">
+                    <button type="submit" class="btn col-12 btn-primary"
+                        [disabled]="!addStudentForm?.valid">Add</button>
+                </div>
+            </ng-template>
+            <div *ngIf="id; else notId" class="row">
+                <div class="col-md-6 mt-2">
+                    <button class="btn col-12 btn-primary" type="button" (click)="update()">Update</button>
+                </div>
+                <div class="col-md-6 mt-2">
+                    <button class="btn col-12 btn-danger" type="button" (click)="delete()">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
